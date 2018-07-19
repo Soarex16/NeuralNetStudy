@@ -45,12 +45,12 @@ Z_predicted = remap(Z_predicted, 0.05, 0.95, np.min(Z_train), np.max(Z_train))
 
 fig = plt.figure(0)
 ax = fig.gca(projection='3d')
-plot = ax.plot_surface(X, Y, Z_ideal, color='red', linewidth=1, rstride=5, cstride=5)
+plot = ax.plot_wireframe(X, Y, Z_ideal, color='red', linewidth=1)
 fig.suptitle('Input function', fontsize=16)
 
 fig2 = plt.figure(1)
 ax = fig2.gca(projection='3d')
-plot2 = ax.plot_surface(X, Y, Z_predicted, color='gray', linewidth=0.5, rstride=5, cstride=5)
+plot2 = ax.plot_wireframe(X, Y, Z_predicted, color='gray', linewidth=0.5)
 fig2.suptitle('Network approximation cfg:' + str(config) + "\n avg err = {:7f}".format(err[-1]), fontsize=16)
 
 err_fig = plt.figure(3)
