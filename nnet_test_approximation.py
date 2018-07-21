@@ -53,7 +53,7 @@ ax = fig2.gca(projection='3d')
 plot2 = ax.plot_wireframe(X, Y, Z_predicted, color='gray', linewidth=0.5)
 fig2.suptitle('Network approximation cfg:' + str(config) + "\n avg err = {:7f}".format(err[-1]), fontsize=16)
 
-err_fig = plt.figure(3)
+err_fig = plt.figure(2)
 ax = err_fig.add_subplot(111)
 ax.plot(range(epochs), err)
 
