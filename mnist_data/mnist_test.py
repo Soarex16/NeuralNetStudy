@@ -15,7 +15,7 @@ data_list = data_file.readlines()
 data_file.close()
 
 config = [28 * 28, 200, 10]
-net = NeuralNetwork(config, learning_rate=0.001, act_func=funcs.tanh, df_act_func=funcs.df_tanh)
+net = NeuralNetwork(config, learning_rate=0.05, act_func=funcs.sigmoid, df_act_func=funcs.df_sigmoid)
 
 X = []
 Y = []
@@ -34,7 +34,7 @@ for data in data_list:
 X = np.array(X)
 Y = np.array(Y)
 
-epochs = 1000
+epochs = 80 # after 30 ne nado
 err = []
 for i in range(epochs):
     epoch_err = []
@@ -63,8 +63,9 @@ for i in range(len(validate_list)):
 
     y_pred = net.predict(x)
 
-    plt.imshow(x.reshape((28, 28)), cmap='Greys', interpolation=None)
-    plt.suptitle(label)
+    # plt.imshow(x.reshape((28, 28)), cmap='Greys', interpolation=None)
+    # plt.suptitle(label)
+    # plt.show()
     # print("res " + str(y_pred))
     pred_num = np.argmax(y_pred)
 
@@ -73,8 +74,7 @@ for i in range(len(validate_list)):
     else:
         scorecard.append(0)
 
-    print("predicted " + str(pred_num))
-    plt.show()
+    print(label + " predicted as " + str(pred_num))
 
 # accuracy
 np_scard = np.asarray(scorecard)
@@ -85,6 +85,11 @@ err_fig = plt.figure(1)
 ax = err_fig.add_subplot(111)
 ax.plot(range(epochs), err)
 plt.show()
+
+# shows what inside network :)
+for weight in net.weights:
+    plt.imshow(weight, cmap='Greys', interpolation=None)
+    plt.show()
 # fig = plt.figure(0)
 # ax = fig.add_subplot(111)
 #
