@@ -32,6 +32,8 @@ class NeuralNetwork:
 
     # TODO: add keras-like layers adding (with their own activation functions) --Do I need this? Maybe, no
     # TODO: what about differencing layers (again, keras-line) UPD: but I don't know about other layers types
+
+    # Deprecated functionality without ability to change activation function
     # def activation_function(self, x):
     #     return 1 / (1 + np.exp(-x))
     #
@@ -118,8 +120,7 @@ class NeuralNetwork:
             if verbose and not (epoch % verbose_period):
                 print("Running %f epoch".format(epoch))
 
-            v_eval = np.vectorize(self.run_epoch)
-            error.append(v_eval(X_train, Y_train))
+            error.append(self.run_epoch(X_train, Y_train))
 
         return np.array(error)
 
